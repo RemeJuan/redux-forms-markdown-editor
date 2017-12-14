@@ -163,6 +163,8 @@ export default class ReactMDE extends React.Component {
         youtube,
         canPreview,
       },
+      meta: { touched, error, warning },
+      input,
     } = p;
 
     const textAreaStyle = Object.assign({}, {
@@ -310,12 +312,17 @@ export default class ReactMDE extends React.Component {
             <textarea
               ref={t => this.textArea = t} // eslint-disable-line
               style={textAreaStyle}
-              value={p.value}
-              onChange={this.handleTextChange}
+              value={input.value || p.value}
+              onChange={input.onChange || this.handleTextChange}
               placeholder={`Use Markdown ${html ? 'or HTML ' : ''}for formatting...`}
             />
           }
         </div>
+        <span>
+          {touched &&
+            ((error && <span>{error}</span>) ||
+              (warning && <span>{warning}</span>))}
+        </span>
       </div>
     );
   }
