@@ -43,7 +43,9 @@
     ],
     "import/prefer-default-export": [
       "warn"
-    ]
+    ],
+    "jsx-a11y/href-no-hash": 0,
+    "react/no-unused-prop-types": ["warn"]
   },
   "globals": {
     "__DEV__": true
