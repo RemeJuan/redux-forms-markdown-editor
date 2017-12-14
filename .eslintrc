@@ -9,8 +9,7 @@
     "react"
   ],
   "extends": [
-    "airbnb",
-    "plugin:testcafe/recommended"
+    "airbnb"
   ],
   "rules": {
     "linebreak-style": [
