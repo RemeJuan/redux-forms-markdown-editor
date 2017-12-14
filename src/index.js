@@ -34,55 +34,52 @@ export default class ReactMDE extends React.Component {
       image: true,
       youtube: true,
       canPreview: true,
-    }
+    },
   }
   static propTypes = {
     value: PropTypes.string.isRequired,
-    enableHTML: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
-    textAreaStyle: PropTypes.object,
-    buttonStyle: PropTypes.object,
-    buttonContainerStyle: PropTypes.object,
+    textAreaStyle: PropTypes.shape(),
+    buttonStyle: PropTypes.shape(),
+    buttonContainerStyle: PropTypes.shape(),
     iconSize: PropTypes.number,
   }
 
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
-      preview: false
+      preview: false,
     };
   }
 
   setCaretPosition = (caretPos) => {
-    let { textarea } = this;
+    const { textarea } = this;
 
     if (textarea !== null) {
       if (textarea.createTextRange) {
-        let range = textarea.createTextRange();
+        const range = textarea.createTextRange();
         range.move('character', caretPos);
         range.select();
+      } else if (textarea.selectionStart) {
+        textarea.focus();
+        textarea.setSelectionRange(caretPos, caretPos);
       } else {
-        if (textarea.selectionStart) {
-          textarea.focus();
-          textarea.setSelectionRange(caretPos, caretPos);
-        } else {
-          textarea.focus();
-        }
+        textarea.focus();
       }
     }
   }
 
   getSelection = (value) => {
-    const { text: { selectionStart, selectionEnd } } = this.refs;
+    const { textarea: { selectionStart, selectionEnd } } = this;
     const cursorIndexStart = selectionStart;
     const cursorIndexEnd = selectionEnd;
     const selection = value.substring(cursorIndexStart, cursorIndexEnd);
 
     return {
-      cursorIndexStart: cursorIndexStart,
-      cursorIndexEnd: cursorIndexEnd,
-      selection: selection
+      cursorIndexStart,
+      cursorIndexEnd,
+      selection,
     };
   }
 
@@ -90,21 +87,24 @@ export default class ReactMDE extends React.Component {
     if (e) {
       e.preventDefault();
     }
-    let {value} = this.props;
-    let selectionProps = this.getSelection(value);
-    let cursorIndexStart = selectionProps.cursorIndexStart;
-    let cursorIndexEnd = selectionProps.cursorIndexEnd;
-    let selection = _selection ? _selection : selectionProps.selection;
+    let { value } = this.props;
+    const selectionProps = this.getSelection(value);
+    const cursorIndexStart = selectionProps.cursorIndexStart;
+    const cursorIndexEnd = selectionProps.cursorIndexEnd;
+    const selection = _selection || selectionProps.selection;
 
-    value = value.substring(0, cursorIndexStart)
-      + `${markdownLeftOrLR}${selection.length > 0 ? selection : ''}${right ? markdownRight ? markdownRight :  markdownLeftOrLR : ''}`
-      + value.substring(cursorIndexEnd, value.length);
+    value = `${value.substring(0, cursorIndexStart)
+    }${markdownLeftOrLR}${selection.length > 0 ? selection : ''}${right ? markdownRight || markdownLeftOrLR : ''}${
+      value.substring(cursorIndexEnd, value.length)}`;
 
     this.props.onChange(value);
 
     if (selection.length === 0) {
-      setTimeout(()=>{
-        this.setCaretPosition(cursorIndexStart + markdownRight ? cursorIndexEnd + cursorPosOffset : markdownLeftOrLR.length);
+      setTimeout(() => {
+        this.setCaretPosition(
+          cursorIndexStart + markdownRight ?
+            cursorIndexEnd + cursorPosOffset : markdownLeftOrLR.length,
+        );
       }, 0);
     }
   }
@@ -115,9 +115,9 @@ export default class ReactMDE extends React.Component {
     const list = this.getSelection(value).selection.split(/\r?\n/);
     let newList = [];
 
-    for (let i = 0; i < list.length; i++) {
+    for (let i = 0; i < list.length; i + 1) {
       if (list[i].length > 0) {
-        newList.push(`${ordered ? i + 1 + '.' : '-'} ${list[i]}`);
+        newList.push(`${ordered ? `${i + 1}.` : '-'} ${list[i]}`);
       }
     }
 
@@ -128,8 +128,8 @@ export default class ReactMDE extends React.Component {
 
   handleYoutube = (e) => {
     e.preventDefault();
-    let url = prompt('Enter a YouTube URL.');
-    let videoId = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+    const url = prompt('Enter a YouTube URL.');
+    const videoId = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
     if (videoId === null) {
       return;
     }
@@ -138,7 +138,7 @@ export default class ReactMDE extends React.Component {
 
   handleTogglePreview = (e) => {
     e.preventDefault();
-    this.setState({preview: !this.state.preview});
+    this.setState({ preview: !this.state.preview });
   }
 
   handleTextChange = (e) => {
@@ -162,7 +162,7 @@ export default class ReactMDE extends React.Component {
         image,
         youtube,
         canPreview,
-      }
+      },
     } = p;
 
     const textAreaStyle = Object.assign({}, {
@@ -170,7 +170,7 @@ export default class ReactMDE extends React.Component {
       outline: '0',
       border: '1px solid #cccccc',
       height: '500px',
-      padding: '4px 8px'
+      padding: '4px 8px',
     }, p.textAreaStyle);
 
     const buttonStyle = Object.assign({}, {
@@ -183,12 +183,12 @@ export default class ReactMDE extends React.Component {
       alignItems: 'center',
       backgroundColor: '#FFF',
       marginLeft: '4px',
-      lineHeight: '1'
+      lineHeight: '1',
     }, p.buttonStyle);
 
     const buttonContainerStyle = Object.assign({}, {
       marginLeft: '-4px',
-      marginBottom: '4px'
+      marginBottom: '4px',
     }, p.buttonContainerStyle);
 
     return (
@@ -198,7 +198,8 @@ export default class ReactMDE extends React.Component {
             <button
               disabled={s.preview}
               style={buttonStyle}
-              onClick={(e) => this.insertAtCursor(e, '**', true)}>
+              onClick={e => this.insertAtCursor(e, '**', true)}
+            >
               <Bold size={iconSize} />
             </button>
           }
@@ -206,7 +207,8 @@ export default class ReactMDE extends React.Component {
             <button
               disabled={s.preview}
               style={buttonStyle}
-              onClick={(e) => this.insertAtCursor(e, '_', true)}>
+              onClick={e => this.insertAtCursor(e, '_', true)}
+            >
               <Italic size={iconSize} />
             </button>
           }
@@ -214,15 +216,17 @@ export default class ReactMDE extends React.Component {
             <button
               disabled={s.preview}
               style={buttonStyle}
-              onClick={(e) => this.insertAtCursor(e, '### ', false)}>
-              <Heading size={iconSize}/>
+              onClick={e => this.insertAtCursor(e, '### ', false)}
+            >
+              <Heading size={iconSize} />
             </button>
           }
           {unorderedList &&
             <button
               disabled={s.preview}
               style={buttonStyle}
-              onClick={(e) => this.handleList(e, false)}>
+              onClick={e => this.handleList(e, false)}
+            >
               <UnOrderedList size={iconSize} />
             </button>
           }
@@ -230,7 +234,8 @@ export default class ReactMDE extends React.Component {
             <button
               disabled={s.preview}
               style={buttonStyle}
-              onClick={(e) => this.handleList(e, true)}>
+              onClick={e => this.handleList(e, true)}
+            >
               <OrderedList size={iconSize} />
             </button>
           }
@@ -238,7 +243,8 @@ export default class ReactMDE extends React.Component {
             <button
               disabled={s.preview}
               style={buttonStyle}
-              onClick={(e) => this.insertAtCursor(e, '<blockquote>', true, null, '</blockquote>', 12)}>
+              onClick={e => this.insertAtCursor(e, '<blockquote>', true, null, '</blockquote>', 12)}
+            >
               <Blockquote size={iconSize} />
             </button>
           }
@@ -246,7 +252,8 @@ export default class ReactMDE extends React.Component {
             <button
               disabled={s.preview}
               style={buttonStyle}
-              onClick={(e) => this.insertAtCursor(e, '```', true, null, '```', 3)}>
+              onClick={e => this.insertAtCursor(e, '```', true, null, '```', 3)}
+            >
               <HTML size={iconSize} />
             </button>
           }
@@ -254,7 +261,8 @@ export default class ReactMDE extends React.Component {
             <button
               disabled={s.preview}
               style={buttonStyle}
-              onClick={(e) => this.insertAtCursor(e, '[', true, null, ']()', 3)}>
+              onClick={e => this.insertAtCursor(e, '[', true, null, ']()', 3)}
+            >
               <URL size={iconSize} />
             </button>
           }
@@ -262,7 +270,8 @@ export default class ReactMDE extends React.Component {
             <button
               disabled={s.preview}
               style={buttonStyle}
-              onClick={(e) => this.insertAtCursor(e, '![](', true, null, ')', 4)}>
+              onClick={e => this.insertAtCursor(e, '![](', true, null, ')', 4)}
+            >
               <Image size={iconSize} />
             </button>
           }
@@ -270,14 +279,16 @@ export default class ReactMDE extends React.Component {
             <button
               disabled={s.preview}
               style={buttonStyle}
-              onClick={this.handleYoutube}>
+              onClick={this.handleYoutube}
+            >
               <YouTube size={iconSize} />
             </button>
           }
           {canPreview &&
             <button
               style={buttonStyle}
-              onClick={this.handleTogglePreview}>
+              onClick={this.handleTogglePreview}
+            >
               {s.preview && <Edit size={iconSize} />}
               {!s.preview && <Preview size={iconSize} />}
               <span style={{ marginLeft: '6px' }}>
@@ -291,20 +302,21 @@ export default class ReactMDE extends React.Component {
           {s.preview &&
             <ReactMarkdown
               source={p.value}
-              escapeHtml={!p.enableHTML} />
+              escapeHtml={!html}
+            />
           }
 
           {!s.preview &&
             <textarea
-              ref={t => this.textArea = t}
+              ref={t => this.textArea = t} // eslint-disable-line
               style={textAreaStyle}
               value={p.value}
               onChange={this.handleTextChange}
-              placeholder={`Use Markdown ${p.enableHTML ? 'or HTML ' : ''}for formatting...`}
+              placeholder={`Use Markdown ${html ? 'or HTML ' : ''}for formatting...`}
             />
           }
         </div>
       </div>
     );
   }
-};
+}
