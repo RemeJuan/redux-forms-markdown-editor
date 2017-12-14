@@ -1,0 +1,40 @@
+{
+  "sourceMaps": true,
+  "comments": false,
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "safari >= 10"
+          ]
+        },
+        "include": [
+          "transform-es2015-classes",
+          "transform-es2015-destructuring",
+          "transform-regenerator"
+        ],
+        "useBuiltIns": true,
+        "production": {
+          "plugins": [
+            "transform-react-remove-prop-types",
+            {
+              "mode": "remove",
+              "ignoreFilenames": [
+                "node_modules"
+              ],
+              "removeImport": true
+            }
+          ]
+        }
+      }
+    ],
+    "stage-1",
+    "react"
+  ],
+  "plugins": [
+    "transform-runtime"
+  ]
+}

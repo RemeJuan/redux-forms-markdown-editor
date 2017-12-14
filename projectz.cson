@@ -1,0 +1,31 @@
+{
+	"title": "React Markdown Editor",
+	"name": "react-mde",
+	"homepage": "https://www.remelehane.me",
+	"description": "Markdown editor built in react",
+	"license": "MIT",
+	"browsers": true,
+	"author": "2017+ Reme Le Hane (reme.lehane@gmail.com) (https://www.remelehane.me)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/RemeJuan/react-mde.git"
+	},
+	"bugs": {
+		"url": "https://github.com/RemeJuan/react-mde/issues"
+	},
+	"badges": {
+		"list": [
+			"nodeico",
+      "---",
+      "travisci",
+			"npmversion",
+			"npmdownloads",
+			"githubfollow",
+			"githubstar",
+			"daviddm",
+		],
+		"config": {
+			"githubUsername": "RemeJuan"
+		}
+	}
+}
