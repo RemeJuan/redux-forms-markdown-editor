@@ -54,24 +54,24 @@ export default class ReactMDE extends React.Component {
   }
 
   setCaretPosition = (caretPos) => {
-    const { textarea } = this;
+    const { textArea } = this;
 
-    if (textarea !== null) {
-      if (textarea.createTextRange) {
-        const range = textarea.createTextRange();
+    if (textArea !== null) {
+      if (textArea.createTextRange) {
+        const range = textArea.createTextRange();
         range.move('character', caretPos);
         range.select();
-      } else if (textarea.selectionStart) {
-        textarea.focus();
-        textarea.setSelectionRange(caretPos, caretPos);
+      } else if (textArea.selectionStart) {
+        textArea.focus();
+        textArea.setSelectionRange(caretPos, caretPos);
       } else {
-        textarea.focus();
+        textArea.focus();
       }
     }
   }
 
   getSelection = (value) => {
-    const { textarea: { selectionStart, selectionEnd } } = this;
+    const { selectionStart, selectionEnd } = this.textArea;
     const cursorIndexStart = selectionStart;
     const cursorIndexEnd = selectionEnd;
     const selection = value.substring(cursorIndexStart, cursorIndexEnd);
