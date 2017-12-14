@@ -14,12 +14,12 @@ Markdown editor built in react
 
 <!-- BADGES/ -->
 
-<span class="badge-nodeico"><a href="https://www.npmjs.com/package/react-mde" title="Nodei.co badge"><img src="https://nodei.co/npm/react-mde.png" alt="Nodei.co badge" /></a></span>
+<span class="badge-nodeico"><a href="https://www.npmjs.com/package/mde-react" title="Nodei.co badge"><img src="https://nodei.co/npm/mde-react.png" alt="Nodei.co badge" /></a></span>
 <br class="badge-separator" />
-<span class="badge-travisci"><a href="http://travis-ci.org/RemeJuan/react-mde" title="Check this project's build status on TravisCI"><img src="https://img.shields.io/travis/RemeJuan/react-mde/master.svg" alt="Travis CI Build Status" /></a></span>
-<span class="badge-npmversion"><a href="https://npmjs.org/package/react-mde" title="View this project on NPM"><img src="https://img.shields.io/npm/v/react-mde.svg" alt="NPM version" /></a></span>
-<span class="badge-npmdownloads"><a href="https://npmjs.org/package/react-mde" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/react-mde.svg" alt="NPM downloads" /></a></span>
-<span class="badge-daviddm"><a href="https://david-dm.org/RemeJuan/react-mde" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/RemeJuan/react-mde.svg" alt="Dependency Status" /></a></span>
+<span class="badge-travisci"><a href="http://travis-ci.org/RemeJuan/mde-react" title="Check this project's build status on TravisCI"><img src="https://img.shields.io/travis/RemeJuan/mde-react/master.svg" alt="Travis CI Build Status" /></a></span>
+<span class="badge-npmversion"><a href="https://npmjs.org/package/mde-react" title="View this project on NPM"><img src="https://img.shields.io/npm/v/mde-react.svg" alt="NPM version" /></a></span>
+<span class="badge-npmdownloads"><a href="https://npmjs.org/package/mde-react" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/mde-react.svg" alt="NPM downloads" /></a></span>
+<span class="badge-daviddm"><a href="https://david-dm.org/RemeJuan/mde-react" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/RemeJuan/mde-react.svg" alt="Dependency Status" /></a></span>
 
 <!-- /BADGES -->
 
@@ -89,7 +89,7 @@ buttonConfig: {
 
 <h2>History</h2>
 
-<a href="https://github.com/RemeJuan/react-mde/releases">Discover the release history by heading on over to the releases page.</a>
+<a href="https://github.com/RemeJuan/mde-react/releases">Discover the release history by heading on over to the releases page.</a>
 
 <!-- /HISTORY -->
 

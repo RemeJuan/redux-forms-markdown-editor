@@ -1,5 +1,5 @@
 {
-  "name": "react-mde",
+  "name": "mde-react",
   "version": "1.0.0",
   "description": "Markdown editor built in react",
   "main": "build/index.js",
@@ -16,10 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+git@github.com:RemeJuan/react-mde.git"
+    "url": "git+git@github.com:RemeJuan/mde-react.git"
   },
   "keywords": [
-    "react-mde",
+    "mde-react",
     "react-markdown-editor",
     "react-markdown-textarea",
     "react-markdown",
@@ -45,9 +45,9 @@
   "author": "2017+ Reme Le Hane (reme.lehane@gmail.com) (https://www.remelehane.me)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/RemeJuan/react-mde/issues"
+    "url": "https://github.com/RemeJuan/mde-react/issues"
   },
-  "homepage": "git@github.com:RemeJuan/react-mde",
+  "homepage": "git@github.com:RemeJuan/mde-react",
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
@@ -84,5 +84,7 @@
     "react-dom": "^16.0.0"
   },
   "maintainers": [],
-  "contributors": []
+  "contributors": [
+    "Reme Le Hane (http://www.remelehane.me)"
+  ]
 }

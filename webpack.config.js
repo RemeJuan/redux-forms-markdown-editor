@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 
 const path = require('path');
+
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
 module.exports = {
@@ -13,8 +14,8 @@ module.exports = {
   },
 
   externals: {
-    'react': 'react',
-    'react-dom': 'react-dom'
+    react: 'react',
+    'react-dom': 'react-dom',
   },
 
   module: {
@@ -29,12 +30,12 @@ module.exports = {
 
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: { warnings: false },
-    //   comments: false,
-    //   sourceMap: false,
-    //   minimize: true,
-    // }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false },
+      comments: false,
+      sourceMap: false,
+      minimize: true,
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         ENV: JSON.stringify(ENV),
@@ -46,7 +47,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/build/'),
     filename: 'index.js',
-    library: 'react-mde',
-    libraryTarget: 'umd'
+    library: 'mde-react',
+    libraryTarget: 'umd',
   },
 };
