@@ -312,10 +312,8 @@ export default class ReactMDE extends React.Component {
             <textarea
               ref={t => this.textArea = t} // eslint-disable-line
               style={textAreaStyle}
-              value={input.value}
-              onChange={input.onChange}
-              onBlur={input.onBlur}
               placeholder={`Use Markdown ${html ? 'or HTML ' : ''}for formatting...`}
+              {...input}
             />
           }
         </div>
