@@ -1,17 +1,17 @@
 {
-	"title": "React Markdown Editor",
-	"name": "mde-react",
+	"title": "Redux Forms Markdown Editor",
+	"name": "redux-forms-markdown-editor",
 	"homepage": "https://www.remelehane.me",
-	"description": "Markdown editor built in react",
+	"description": "Redux Forms Markdown Editor",
 	"license": "MIT",
 	"browsers": true,
 	"author": "2017+ Reme Le Hane (reme.lehane@gmail.com) (https://www.remelehane.me)",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/RemeJuan/mde-react.git"
+		"url": "https://github.com/RemeJuan/redux-forms-markdown-editor.git"
 	},
 	"bugs": {
-		"url": "https://github.com/RemeJuan/mde-react/issues"
+		"url": "https://github.com/RemeJuan/redux-forms-markdown-editor/issues"
 	},
 	"badges": {
 		"list": [
