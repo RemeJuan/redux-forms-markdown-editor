@@ -1,13 +1,7 @@
 {
-<<<<<<< HEAD
-  "name": "mde-react",
-  "version": "1.0.1",
-  "description": "Markdown editor built in react",
-=======
   "name": "redux-forms-markdown-editor",
   "version": "1.1.0",
   "description": "Redux Forms Markdown Editor",
->>>>>>> 8ae4fb2fe8ac72514f233fddc93fec4fde0147af
   "main": "build/index.js",
   "scripts": {
     "compile": "projectz compile",
