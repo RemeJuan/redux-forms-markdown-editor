@@ -26,11 +26,11 @@ Markdown editor built in react
 
 ## Instalation
 ```
-yarn add react-mde
+yarn add redux-markdown-editor
 
 or
 
-npm install react-mde
+npm install redux-markdown-editor
 ```
 
 ## Features
@@ -46,7 +46,7 @@ npm install react-mde
 ## Usage
 
 ```javascript
-import ReactMDE from 'react-mde';
+import ReactMDE from 'redux-markdown-editor';
 
 const Editor = ({ details, onChangeHandler }) => (
   <div>
