@@ -26,11 +26,11 @@ Redux Forms Markdown Editor
 
 ## Instalation
 ```
-yarn add redux-markdown-editor
+yarn add redux-forms-markdown-editor
 
 or
 
-npm install redux-markdown-editor
+npm install redux-forms-markdown-editor
 ```
 
 ## Features
