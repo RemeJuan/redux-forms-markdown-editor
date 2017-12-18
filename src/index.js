@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
+
 import {
   Bold,
   Italic,
@@ -43,6 +44,7 @@ export default class ReactMDE extends React.Component {
     buttonStyle: PropTypes.shape(),
     buttonContainerStyle: PropTypes.shape(),
     iconSize: PropTypes.number,
+    input: PropTypes.shape().isRequired,
   }
 
   constructor(props) {
@@ -87,7 +89,9 @@ export default class ReactMDE extends React.Component {
     if (e) {
       e.preventDefault();
     }
-    let { value } = this.props;
+    const { input } = this.props;
+    let { value } = input;
+
     const selectionProps = this.getSelection(value);
     const cursorIndexStart = selectionProps.cursorIndexStart;
     const cursorIndexEnd = selectionProps.cursorIndexEnd;
@@ -97,7 +101,7 @@ export default class ReactMDE extends React.Component {
     }${markdownLeftOrLR}${selection.length > 0 ? selection : ''}${right ? markdownRight || markdownLeftOrLR : ''}${
       value.substring(cursorIndexEnd, value.length)}`;
 
-    this.props.onChange(value);
+    input.onChange(value);
 
     if (selection.length === 0) {
       setTimeout(() => {
@@ -141,13 +145,9 @@ export default class ReactMDE extends React.Component {
     this.setState({ preview: !this.state.preview });
   }
 
-  handleTextChange = (e) => {
-    this.props.onChange(e.target.value);
-  }
-
   render() {
     const p = this.props;
-    const s = this.state;
+    const { preview } = this.state;
     const {
       iconSize,
       buttonConfig: {
@@ -198,7 +198,7 @@ export default class ReactMDE extends React.Component {
         <div style={buttonContainerStyle}>
           {bold &&
             <button
-              disabled={s.preview}
+              disabled={preview}
               style={buttonStyle}
               onClick={e => this.insertAtCursor(e, '**', true)}
             >
@@ -207,7 +207,7 @@ export default class ReactMDE extends React.Component {
           }
           {italic &&
             <button
-              disabled={s.preview}
+              disabled={preview}
               style={buttonStyle}
               onClick={e => this.insertAtCursor(e, '_', true)}
             >
@@ -216,7 +216,7 @@ export default class ReactMDE extends React.Component {
           }
           {heading &&
             <button
-              disabled={s.preview}
+              disabled={preview}
               style={buttonStyle}
               onClick={e => this.insertAtCursor(e, '### ', false)}
             >
@@ -225,7 +225,7 @@ export default class ReactMDE extends React.Component {
           }
           {unorderedList &&
             <button
-              disabled={s.preview}
+              disabled={preview}
               style={buttonStyle}
               onClick={e => this.handleList(e, false)}
             >
@@ -234,7 +234,7 @@ export default class ReactMDE extends React.Component {
           }
           {orderedList &&
             <button
-              disabled={s.preview}
+              disabled={preview}
               style={buttonStyle}
               onClick={e => this.handleList(e, true)}
             >
@@ -243,7 +243,7 @@ export default class ReactMDE extends React.Component {
           }
           {blockQuote &&
             <button
-              disabled={s.preview}
+              disabled={preview}
               style={buttonStyle}
               onClick={e => this.insertAtCursor(e, '<blockquote>', true, null, '</blockquote>', 12)}
             >
@@ -252,7 +252,7 @@ export default class ReactMDE extends React.Component {
           }
           {html &&
             <button
-              disabled={s.preview}
+              disabled={preview}
               style={buttonStyle}
               onClick={e => this.insertAtCursor(e, '```', true, null, '```', 3)}
             >
@@ -261,7 +261,7 @@ export default class ReactMDE extends React.Component {
           }
           {url &&
             <button
-              disabled={s.preview}
+              disabled={preview}
               style={buttonStyle}
               onClick={e => this.insertAtCursor(e, '[', true, null, ']()', 3)}
             >
@@ -270,7 +270,7 @@ export default class ReactMDE extends React.Component {
           }
           {image &&
             <button
-              disabled={s.preview}
+              disabled={preview}
               style={buttonStyle}
               onClick={e => this.insertAtCursor(e, '![](', true, null, ')', 4)}
             >
@@ -279,7 +279,7 @@ export default class ReactMDE extends React.Component {
           }
           {youtube &&
             <button
-              disabled={s.preview}
+              disabled={preview}
               style={buttonStyle}
               onClick={this.handleYoutube}
             >
@@ -291,24 +291,24 @@ export default class ReactMDE extends React.Component {
               style={buttonStyle}
               onClick={this.handleTogglePreview}
             >
-              {s.preview && <Edit size={iconSize} />}
-              {!s.preview && <Preview size={iconSize} />}
+              {preview && <Edit size={iconSize} />}
+              {!preview && <Preview size={iconSize} />}
               <span style={{ marginLeft: '6px' }}>
-                {s.preview ? 'Editor' : 'Preview'}
+                {preview ? 'Editor' : 'Preview'}
               </span>
             </button>
           }
         </div>
 
         <div>
-          {s.preview &&
+          {preview &&
             <ReactMarkdown
-              source={p.value}
+              source={input.value}
               escapeHtml={!html}
             />
           }
 
-          {!s.preview &&
+          {!preview &&
             <textarea
               ref={t => this.textArea = t} // eslint-disable-line
               style={textAreaStyle}
