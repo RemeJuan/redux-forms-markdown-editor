@@ -25,6 +25,9 @@ Redux Forms Markdown Editor
 
 
 ## Instalation
+
+**Note:** Designed for use with [Redux Form](https://redux-form.com)
+
 ```
 yarn add redux-forms-markdown-editor
 
@@ -46,16 +49,38 @@ npm install redux-forms-markdown-editor
 ## Usage
 
 ```javascript
+import { reduxForm, Field } from 'redux-form';
 import ReactMDE from 'redux-markdown-editor';
 
-const Editor = ({ details, onChangeHandler }) => (
-  <div>
-    <ReactMDE
-      value={details}
-      onChange={onChangeHandler}
-    />
-  </div>
+const SampleForm = ({ handleSubmit, pristine, submitting }) => (
+  <form onSubmit={handleSubmit}>
+    <div>
+      <label>First Name</label>
+      <Field
+        name="firstName"
+        component="input"
+        type="text"
+        placeholder="First Name"
+      />
+    </div>
+
+    <div>
+      <label>Bio</label>
+      <Field
+        name="bio"
+        component={ReactMDE}
+        placeholder="More info about yourself"
+      />
+    </div>
+    <button type="submit" disabled={pristine || submitting}>
+      Submit
+    </button>
+  </form>
 );
+
+export default reduxForm({
+  form: 'mde-sample'
+})(SampleForm);
 ```
 
 ## Available Props
