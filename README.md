@@ -50,7 +50,7 @@ npm install redux-forms-markdown-editor
 
 ```javascript
 import { reduxForm, Field } from 'redux-form';
-import ReactMDE from 'redux-markdown-editor';
+import ReactMDE from 'redux-forms-markdown-editor';
 
 const SampleForm = ({ handleSubmit, pristine, submitting }) => (
   <form onSubmit={handleSubmit}>
