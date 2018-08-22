@@ -36,6 +36,7 @@ export default class ReactMDE extends React.Component {
       youtube: true,
       canPreview: true,
     },
+    placeholder: '',
   }
   static propTypes = {
     value: PropTypes.string.isRequired,
@@ -45,6 +46,7 @@ export default class ReactMDE extends React.Component {
     buttonContainerStyle: PropTypes.shape(),
     iconSize: PropTypes.number,
     input: PropTypes.shape().isRequired,
+    placeholder: PropTypes.string,
   }
 
   constructor(props) {
@@ -312,7 +314,7 @@ export default class ReactMDE extends React.Component {
             <textarea
               ref={t => this.textArea = t} // eslint-disable-line
               style={textAreaStyle}
-              placeholder={`Use Markdown ${html ? 'or HTML ' : ''}for formatting...`}
+              placeholder={placeholder || `Use Markdown ${html ? 'or HTML ' : ''}for formatting...`}
               {...input}
             />
           }
