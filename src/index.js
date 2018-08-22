@@ -167,6 +167,7 @@ export default class ReactMDE extends React.Component {
       },
       meta: { touched, error, warning },
       input,
+      placeholder,
     } = p;
 
     const textAreaStyle = Object.assign({}, {
