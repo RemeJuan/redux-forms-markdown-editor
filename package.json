@@ -4,7 +4,6 @@
   "description": "Redux Forms Markdown Editor",
   "main": "build/index.js",
   "scripts": {
-    "test": "exit 0",
     "compile": "projectz compile",
     "postversion": "git push && git push --tags && npm publish",
     "prepare": "yarn build",
@@ -13,8 +12,7 @@
     "lint": "eslint --ext .jsx --ext .js src/",
     "commitmsg": "validate-commit-msg",
     "prepush": "yarn lint",
-    "postmerge": "yarn",
-    "semantic-release": "semantic-release"
+    "postmerge": "yarn"
   },
   "repository": {
     "type": "git",
