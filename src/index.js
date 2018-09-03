@@ -117,7 +117,7 @@ export default class ReactMDE extends React.Component {
 
   handleList = (e, ordered) => {
     e.preventDefault();
-    const { value } = this.props;
+    const { value } = this.props.input;
     const list = this.getSelection(value).selection.split(/\r?\n/);
     let newList = [];
 
