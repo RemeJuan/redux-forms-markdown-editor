@@ -117,16 +117,16 @@ export default class ReactMDE extends React.Component {
 
   handleList = (e, ordered) => {
     e.preventDefault();
-    const { value } = this.props;
+    const { value } = this.props.input;
     const list = this.getSelection(value).selection.split(/\r?\n/);
     let newList = [];
 
-    for (let i = 0; i < list.length; i + 1) {
-      if (list[i].length > 0) {
+    list.forEach((item, i) => {
+      if (item.length > 0) {
         newList.push(`${ordered ? `${i + 1}.` : '-'} ${list[i]}`);
       }
-    }
-
+    });
+    
     newList = newList.join('\n');
 
     this.insertAtCursor(null, '', false, newList);
