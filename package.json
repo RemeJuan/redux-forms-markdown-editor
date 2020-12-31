@@ -1,6 +1,6 @@
 {
   "name": "redux-forms-markdown-editor",
-  "version": "0.0.0-development",
+  "version": "0.0.0",
   "description": "Redux Forms Markdown Editor",
   "main": "build/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "watch": "yarn build --watch",
     "lint": "eslint --ext .jsx --ext .js src/"
   },
-  "husky":{
+  "husky": {
     "postversion": "git push && git push --tags && npm publish",
     "commitmsg": "validate-commit-msg",
     "prepush": "yarn lint",
