@@ -5,11 +5,13 @@
   "main": "build/index.js",
   "scripts": {
     "compile": "projectz compile",
-    "postversion": "git push && git push --tags && npm publish",
     "prepare": "yarn build",
     "build": "webpack --progress --profile --bail",
     "watch": "yarn build --watch",
-    "lint": "eslint --ext .jsx --ext .js src/",
+    "lint": "eslint --ext .jsx --ext .js src/"
+  },
+  "husky":{
+    "postversion": "git push && git push --tags && npm publish",
     "commitmsg": "validate-commit-msg",
     "prepush": "yarn lint",
     "postmerge": "yarn"
@@ -65,25 +67,26 @@
     "babel-preset-stage-1": "^6.24.1",
     "babel-register": "^6.24.1",
     "babel-runtime": "^6.23.0",
-    "eslint": "^4.4.0",
-    "eslint-config-airbnb": "^15.1.0",
+    "eslint": "^7.16.0",
+    "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.1.0",
-    "eslint-watch": "^3.1.2",
-    "husky": "^0.14.3",
+    "eslint-watch": "^7.0.0",
+    "husky": "^4.3.6",
     "lodash": "^4.3.0",
-    "projectz": "^1.4.0",
+    "projectz": "^2.18.0",
     "prop-types": "^15.5.10",
-    "react-markdown": "^2.5.0",
-    "validate-commit-msg": "^2.14.0",
-    "webpack": "^3.5.5",
+    "react-markdown": "^5.0.3",
     "semantic-release": "^17.2.3",
-    "travis-deploy-once": "^5.0.7"
+    "travis-deploy-once": "^5.0.7",
+    "validate-commit-msg": "^2.14.0",
+    "webpack": "5",
+    "webpack-cli": "^4.3.0"
   },
   "dependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "maintainers": [],
   "contributors": [

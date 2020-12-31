@@ -30,12 +30,6 @@ module.exports = {
 
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false },
-      comments: false,
-      sourceMap: false,
-      minimize: true,
-    }),
     new webpack.DefinePlugin({
       'process.env': {
         ENV: JSON.stringify(ENV),
