@@ -1,6 +1,6 @@
 {
   "name": "redux-forms-markdown-editor",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Redux Forms Markdown Editor",
   "main": "build/index.js",
   "scripts": {
